@@ -264,7 +264,7 @@ public static class Map
 		}
 	}
 
-	[HarmonyPatch(typeof(Minimap), nameof(Minimap.Awake))]
+	[HarmonyPatch(typeof(Minimap), nameof(Minimap.Start))]
 	private static class RefereshPortalPins
 	{
 		private static void Postfix(Minimap __instance)
