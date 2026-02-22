@@ -10,7 +10,6 @@ using Groups;
 using HarmonyLib;
 using JetBrains.Annotations;
 using ServerSync;
-using Splatform;
 using UnityEngine;
 
 namespace TargetPortal;
@@ -22,7 +21,7 @@ namespace TargetPortal;
 public class TargetPortal : BaseUnityPlugin
 {
 	private const string ModName = "TargetPortal";
-	private const string ModVersion = "1.1.21";
+	private const string ModVersion = "1.2.2";
 	private const string ModGUID = "org.bepinex.plugins.targetportal";
 
 	public static HashSet<ZDO> knownPortals = new();
@@ -244,32 +243,32 @@ public class TargetPortal : BaseUnityPlugin
 	private static int SquashPortalMode(int mode)
 	{
 		if (mode == (int)PortalMode.Group && !API.IsLoaded())
-        {
-        	++mode;
-        }
-        if (mode == (int)PortalMode.Admin && !configSync.IsAdmin)
-        {
-        	++mode;
-        }
-        if (mode == (int)PortalMode.Guild && !Guilds.API.IsLoaded())
-        {
-        	++mode;
-        }
-        if (mode > (int)PortalMode.Guild)
-        {
-        	mode = (int)PortalMode.Public;
-        }
-        return mode;
+		{
+			++mode;
+		}
+		if (mode == (int)PortalMode.Admin && !configSync.IsAdmin)
+		{
+			++mode;
+		}
+		if (mode == (int)PortalMode.Guild && !Guilds.API.IsLoaded())
+		{
+			++mode;
+		}
+		if (mode > (int)PortalMode.Guild)
+		{
+			mode = (int)PortalMode.Public;
+		}
+		return mode;
 	}
-	
+
 	[HarmonyPatch(typeof(TeleportWorld), nameof(TeleportWorld.Awake))]
 	private static class SetInitialPortalMode
 	{
 		private static void Prefix(TeleportWorld __instance)
 		{
-			if (__instance.GetComponent<Piece>() is {} piece && piece.m_nview.GetZDO() is {} zdo && !piece.IsPlacedByPlayer() && zdo.GetInt("TargetPortal PortalMode", -1) == -1)
+			if (__instance.GetComponent<Piece>() is { } piece && piece.m_nview.GetZDO() is { } zdo && !piece.IsPlacedByPlayer() && zdo.GetInt("TargetPortal PortalMode", -1) == -1)
 			{
-				SetPortalMode(zdo, SquashPortalMode((int)defaultPortalMode.Value), PlatformManager.DistributionPlatform.LocalUser.PlatformUserID.ToString().Replace("Steam_", ""), Player.m_localPlayer.GetHoverName());
+				SetPortalMode(zdo, SquashPortalMode((int)defaultPortalMode.Value), UserInfo.GetLocalUser().UserId.ToString().Replace("Steam_", ""), Player.m_localPlayer.GetHoverName());
 			}
 		}
 	}
@@ -290,7 +289,7 @@ public class TargetPortal : BaseUnityPlugin
 				++mode;
 				mode = SquashPortalMode(mode);
 
-				ZRoutedRpc.instance.InvokeRoutedRPC(ZRoutedRpc.Everybody, "TargetPortals ChangePortalMode", __instance.m_nview.GetZDO().m_uid, mode, PlatformManager.DistributionPlatform.LocalUser.PlatformUserID.ToString().Replace("Steam_", ""), Player.m_localPlayer.GetHoverName());
+				ZRoutedRpc.instance.InvokeRoutedRPC(ZRoutedRpc.Everybody, "TargetPortals ChangePortalMode", __instance.m_nview.GetZDO().m_uid, mode, UserInfo.GetLocalUser().UserId.ToString().Replace("Steam_", ""), Player.m_localPlayer.GetHoverName());
 
 				return false;
 			}

@@ -70,18 +70,24 @@
             <SpecificVersion>false</SpecificVersion>
         </Reference>
         <Reference Include="Groups">
-          <HintPath>GroupsAPI.dll</HintPath>
+            <HintPath>GroupsAPI.dll</HintPath>
         </Reference>
         <Reference Include="Guilds">
-          <HintPath>GuildsAPI.dll</HintPath>
+            <HintPath>GuildsAPI.dll</HintPath>
         </Reference>
         <Reference Include="ServerSync, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null">
             <HintPath>ServerSync.dll</HintPath>
+        </Reference>
+        <Reference Include="Splatform">
+            <HintPath>$(GamePath)\valheim_Data\Managed\Splatform.dll</HintPath>
         </Reference>
         <Reference Include="System"/>
         <Reference Include="System.Core"/>
         <Reference Include="System.Data"/>
         <Reference Include="System.Xml"/>
+        <Reference Include="Unity.TextMeshPro">
+            <HintPath>$(GamePath)\valheim_Data\Managed\Unity.TextMeshPro.dll</HintPath>
+        </Reference>
         <Reference Include="UnityEngine, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
             <HintPath>$(GamePath)\valheim_Data\Managed\UnityEngine.dll</HintPath>
         </Reference>
@@ -89,7 +95,7 @@
             <HintPath>$(GamePath)\valheim_Data\Managed\UnityEngine.CoreModule.dll</HintPath>
         </Reference>
         <Reference Include="UnityEngine.ImageConversionModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
-            <HintPath>$(GamePath)\valheim_Data\Managed\UnityEngine.ImageConversionModule.dll</HintPath>
+            <HintPath>$(GamePath)\valheim_Data\Managed\UnityEngine.ImageConversionModule_Old.dll</HintPath>
         </Reference>
         <Reference Include="UnityEngine.InputLegacyModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
             <HintPath>$(GamePath)\valheim_Data\Managed\UnityEngine.InputLegacyModule.dll</HintPath>
@@ -97,11 +103,11 @@
         <Reference Include="UnityEngine.PhysicsModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
             <HintPath>$(GamePath)\valheim_Data\Managed\UnityEngine.PhysicsModule.dll</HintPath>
         </Reference>
-        <Reference Include="Splatform">
-            <HintPath>$(GamePath)\valheim_Data\Managed\Splatform.dll</HintPath>
+        <Reference Include="UnityEngine.TextRenderingModule">
+            <HintPath>$(GamePath)\valheim_Data\Managed\UnityEngine.TextRenderingModule.dll</HintPath>
         </Reference>
-        <Reference Include="Splatform.Steam">
-            <HintPath>$(GamePath)\valheim_Data\Managed\Splatform.Steam.dll</HintPath>
+        <Reference Include="UnityEngine.UI">
+            <HintPath>$(GamePath)\valheim_Data\Managed\UnityEngine.UI.dll</HintPath>
         </Reference>
     </ItemGroup>
     <ItemGroup>
